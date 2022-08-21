@@ -32,15 +32,6 @@ Sample code for the example given in the slide
 # root.draw_region(3,3,0,0,'green')
 # root.mainloop()
 
-
-"""
-Sample code for the displaying wrap region
-"""
-# root = kmap([[0,1,1,0], ['x',1,'x',0], [1,0,0,0], [1,'x',0,0]])
-# #root.draw_region(1,3,2,0,'blue')
-# root.draw_region(3,0,0,3,'green')
-# root.mainloop()
-
 def solve(term):
         universal = {0,1,2,3}
         gawd = [[{0,1},{2,3}],[{3,0},{1,2}]]
@@ -72,3 +63,13 @@ def is_legal_region(kmap_function,term):
                 return ((row[0],column[0]),(row[len(row)-1],column[len(column)-1]),False)
         else:
                 return ((row[0],column[0]),(row[len(row)-1],column[len(column)-1]),True)
+
+
+
+"""
+Sample code for the displaying wrap region
+"""
+# root = kmap([[0,1,1,0], ['x',1,'x',0], [1,0,0,0], [1,'x',0,0]])
+# #root.draw_region(1,3,2,0,'blue')
+# root.draw_region(3,0,0,3,'green')
+# root.mainloop()        
