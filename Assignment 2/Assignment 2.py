@@ -1,4 +1,4 @@
-from xml.etree.ElementTree import tostring
+import time
 
 def cmp(a,b):
     return (len(a[2]) < len(b[2]))
@@ -21,9 +21,9 @@ def fromBinary(nbin,dbin,n):
     bins=bins[2:]
     dbins = bin(dbin)
     dbins=dbins[2:]
-    ch = 97+n
+    ch = 97+n-1
     lst=[]
-    ch -= n-len(bins)
+    # ch -= n-len(bins)
     for i in range (0,len(bins)):
         if(i<len(dbins)):
             if(dbins[len(dbins)-i-1] == '1'): 
@@ -32,12 +32,15 @@ def fromBinary(nbin,dbin,n):
             elif(bins[len(bins)-i-1] == '1'): lst.append(chr(ch))
             elif(bins[len(bins)-i-1] == '0'): lst.append(chr(ch)+"'")
         else:
-            if(bins[len(bins)-1-i] == '1'): lst.append(tostring(chr(ch)))
-            elif(bins[len(bins)-1-i] == '0'): lst.append(tostring(chr(ch))+"'")
+            if(bins[len(bins)-1-i] == '1'): lst.append((chr(ch)))
+            elif(bins[len(bins)-1-i] == '0'): lst.append((chr(ch))+"'")
+        ch-=1
+    for i in range(len(bins),n):
+        lst.append(chr(ch)+"'")
         ch-=1
     lst.reverse()
     str = ''.join(lst)
-    print(str)
+    return str
 
 def combine(group,ans):
     groups = [ [] for _ in range(len(group)) ]
@@ -59,23 +62,18 @@ def combine(group,ans):
                         check = True
                         groups[bin(y).count("1")].append((y,xor+group[i][j][1],tset))
             if(check == False): 
-                if(((group[i][j][0],group[i][j][1]) in set1) == False):
-                    ans.append(group[i][j])
+                if(((group[i][j][0],group[i][j][1]) in set1) == False): ans.append(group[i][j])
         set1 = set2
         set2 = set()
-        print(groups)
+        # print(groups)
     x = len(group) - 1
     for i in range(len(group[len(group)-1])):
-        if(((group[x][i][0],group[x][i][1]) in set1) == False):
-            ans.append(group[x][i])
+        if(((group[x][i][0],group[x][i][1]) in set1) == False): ans.append(group[x][i])
     final = True
     for i in groups:
-        if(len(i) != 0):
-            final = False
-    if(final):
-        return ans
-    else:
-        return combine(groups,ans)
+        if(len(i) != 0): final = False
+    if(final): return ans
+    else: return combine(groups,ans)
 
 def comb_function_expansion(func_TRUE, func_DC):
     """
@@ -97,21 +95,27 @@ def comb_function_expansion(func_TRUE, func_DC):
         binary = toBinary(each)
         truebin.append(binary)
         groups[bin(binary[0]).count("1")].append((binary[0],binary[1],{binary[0]}))
-        dict[binary] = it
+        dict[binary[0]] = it
         it += 1
     for each in func_DC:
         binary = toBinary(each)
-        dcbin.append(binary)
+        dcbin.append(binary[0])
         groups[bin(binary[0]).count("1")].append((binary[0],binary[1],{binary[0]}))
-    print(groups)
+    # print(groups)
     ans = combine(groups,[])
-    ans.sort(cmp)
+    ans.sort(key = lambda x: -len(x[2]))
     output = [ None for _ in range(it)]
-    completeset = set()
-    for i in ans:
-        completeset = completeset - i[2]
+    completeset = set(dcbin)
+    for each in ans:
+        nonset = each[2] - completeset
+        s = fromBinary(each[0],each[1],n)
+        for element in nonset:
+            output[dict[element]] = s
+        completeset = completeset.union(nonset)
+    print(output)
 
-
-fromBinary(5,4,4)
-# comb_function_expansion(["a'bc'd'", "abc'd'", "a'b'c'd", "a'bc'd", "a'b'cd"],["abc'd"])
+start_time = time.time()
+# fromBinary(5,4,4)
+comb_function_expansion(["a'b'c'd'e'", "a'b'cd'e", "a'b'cde'", "a'bc'd'e'", "a'bc'd'e", "a'bc'de", "a'bc'de'", "ab'c'd'e'", "ab'cd'e'"],["abc'd'e'", "abc'd'e", "abc'de", "abc'de'"])
 # ["a'b'c'd'","a'b'c'd","a'b'cd'","a'bc'd'","ab'c'd'","a'bcd'","ab'c'd","ab'cd","abc'd","abcd","abcd"],[]
+print("--- %s seconds ---" %(time.time() - start_time))
