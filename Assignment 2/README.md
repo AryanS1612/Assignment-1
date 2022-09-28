@@ -1,1 +1,1 @@
-We have used the Quine McCluskey method to implement expansions of minterms(source - https://www.geeksforgeeks.org/quine-mccluskey-method/#:~:text=Quine%20McCluskey%20method%20also%20known,uses%20an%20automatic%20simplification%20routine.)
+We have used the Quine McCluskey method to implement expansions of minterms (source - https://www.geeksforgeeks.org/quine-mccluskey-method/#:~:text=Quine%20McCluskey%20method%20also%20known,uses%20an%20automatic%20simplification%20routine.)
