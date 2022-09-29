@@ -238,7 +238,6 @@ def opt_function_reduce(func_TRUE, func_DC):
 # print(opt_function_reduce(["a'b'c'd", "a'b'cd", "a'bc'd", "abc'd'", "abc'd", "ab'c'd'", "ab'cd"], ["a'bc'd'","a'bcd", "ab'c'd"]))
 print(opt_function_reduce(["a'b'c'", "a'b'c", "a'bc'", "ab'c", "abc'", "abc"],[]))
 # print(opt_function_reduce(["a'b'cd'","a'b'cd","a'bcd","ab'c'd","ab'cd","abc'd"],["a'b'c'd","ab'cd'","abcd"]))
-k_map = [[0,1,0,0],[1,1,'x',1],[0,1,1,'x']]
 
 
 
