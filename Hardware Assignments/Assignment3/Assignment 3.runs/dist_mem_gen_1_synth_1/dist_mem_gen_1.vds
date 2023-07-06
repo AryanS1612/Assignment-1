@@ -1,0 +1,15 @@
+#-----------------------------------------------------------
+# Vivado v2022.1 (64-bit)
+# SW Build 3526262 on Mon Apr 18 15:47:01 MDT 2022
+# IP Build 3524634 on Mon Apr 18 20:55:01 MDT 2022
+# Start of session at: Sat Nov 12 09:23:08 2022
+# Process ID: 13072
+# Current directory: /home/btech/cs1210549/Assignment 3/Assignment 3.runs/dist_mem_gen_1_synth_1
+# Command line: vivado -log dist_mem_gen_1.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source dist_mem_gen_1.tcl
+# Log file: /home/btech/cs1210549/Assignment 3/Assignment 3.runs/dist_mem_gen_1_synth_1/dist_mem_gen_1.vds
+# Journal file: /home/btech/cs1210549/Assignment 3/Assignment 3.runs/dist_mem_gen_1_synth_1/vivado.jou
+# Running On: dhd, OS: Linux, CPU Frequency: 4225.740 MHz, CPU Physical cores: 12, Host memory: 33337 MB
+#-----------------------------------------------------------
+source dist_mem_gen_1.tcl -notrace
+INFO: [IP_Flow 19-4838] Using cached IP synthesis design for IP dist_mem_gen_1, cache-ID = 385c90756b8a392d.
+INFO: [Common 17-206] Exiting Vivado at Sat Nov 12 09:23:13 2022...
